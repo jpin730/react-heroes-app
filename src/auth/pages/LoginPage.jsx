@@ -8,7 +8,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="d-flex min-vh-100 bg-light">
+    <div className="d-flex min-vh-100">
       <div className="m-auto border rounded bg-white text-center w-25 p-5">
         <h1>Login</h1>
         <hr />
