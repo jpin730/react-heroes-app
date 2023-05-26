@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir docs --base /react-hooks-app",
+    "build": "vite build --outDir docs --base /react-heroes-app",
     "preview": "vite preview"
   },
   "dependencies": {
