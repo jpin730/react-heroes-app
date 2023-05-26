@@ -1,3 +1,57 @@
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useMemo } from "react";
+
+import { getHeroById } from "../helpers";
+import { BASE_URL, PUBLISHERS } from "../constants";
+
 export const HeroPage = () => {
-  return <h1>HeroPage</h1>;
+  const { id } = useParams();
+
+  const hero = useMemo(() => getHeroById(id), [id]);
+
+  if (!hero) return <Navigate to="/" />;
+
+  const { superhero, publisher, alter_ego, first_appearance, characters } =
+    hero;
+
+  const imageUrl = `${BASE_URL}heroes/${id}.jpg`;
+
+  const navigate = useNavigate();
+
+  const onNavigateBack = () => {
+    const to = publisher === PUBLISHERS.marvelComics ? "/marvel" : "/dc-comics";
+    navigate(to);
+  };
+
+  return (
+    <div className="row g-3">
+      <div className="col-md-4">
+        <img src={imageUrl} alt={superhero} className="img-thumbnail" />
+      </div>
+
+      <div className="col-md-8">
+        <h3>{superhero}</h3>
+        <hr />
+
+        <ul className="list-group">
+          <li className="list-group-item list-group-item-action">
+            <b>Alter ego:</b> {alter_ego}
+          </li>
+          <li className="list-group-item list-group-item-action">
+            <b>Publisher:</b> {publisher}
+          </li>
+          <li className="list-group-item list-group-item-action">
+            <b>First appearance:</b> {first_appearance}
+          </li>
+          <li className="list-group-item list-group-item-action">
+            <b>Characters:</b> {characters}
+          </li>
+        </ul>
+
+        <button className="btn btn-link" onClick={onNavigateBack}>
+          Back to {publisher}
+        </button>
+      </div>
+    </div>
+  );
 };

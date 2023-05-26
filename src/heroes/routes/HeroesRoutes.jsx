@@ -18,7 +18,7 @@ export const HeroesRoutes = () => {
       component: <SearchPage />,
     },
     {
-      path: "hero",
+      path: "hero/:id",
       component: <HeroPage />,
     },
   ];
@@ -37,7 +37,7 @@ export const HeroesRoutes = () => {
             />
           ))}
 
-          <Route path="/*" element={<Navigate to={"/marvel"} />} />
+          <Route path="/*" element={<Navigate to={"/search"} />} />
         </Routes>
       </div>
     </>

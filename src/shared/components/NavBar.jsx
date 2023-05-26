@@ -5,7 +5,7 @@ export const Navbar = () => {
 
   const navItems = [
     {
-      name: "Marvel",
+      name: "Marvel Comics",
       path: "/marvel",
     },
     {

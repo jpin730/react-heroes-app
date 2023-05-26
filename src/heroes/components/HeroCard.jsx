@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import { BASE_URL } from "../constants";
+
 export const HeroCard = ({
   id,
   superhero,
@@ -5,8 +9,7 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const baseUrl = location.origin + import.meta.env.BASE_URL;
-  const imageUrl = `${baseUrl}heroes/${id}.jpg`;
+  const imageUrl = `${BASE_URL}heroes/${id}.jpg`;
 
   const filteredCharacters = characters
     .split(", ")
@@ -34,6 +37,9 @@ export const HeroCard = ({
                   {first_appearance}
                 </small>
               </p>
+              <Link className="card-link" to={`/hero/${id}`}>
+                More...
+              </Link>
             </div>
           </div>
         </div>
