@@ -18,7 +18,7 @@ export const HeroPage = () => {
 
   const navigate = useNavigate();
 
-  const onNavigateBack = () => {
+  const onNavigateToPublisher = () => {
     const to = publisher === PUBLISHERS.marvelComics ? "/marvel" : "/dc-comics";
     navigate(to);
   };
@@ -48,8 +48,8 @@ export const HeroPage = () => {
           </li>
         </ul>
 
-        <button className="btn btn-link" onClick={onNavigateBack}>
-          Back to {publisher}
+        <button className="btn btn-link" onClick={onNavigateToPublisher}>
+          Go to {publisher}
         </button>
       </div>
     </div>
