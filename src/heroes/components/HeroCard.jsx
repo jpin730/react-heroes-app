@@ -5,9 +5,8 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const imageUrl = `${
-    location.origin + import.meta.env.BASE_URL
-  }/heroes/${id}.jpg`;
+  const baseUrl = location.origin + import.meta.env.BASE_URL;
+  const imageUrl = `${baseUrl}heroes/${id}.jpg`;
 
   const filteredCharacters = characters
     .split(", ")
