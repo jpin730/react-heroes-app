@@ -5,7 +5,7 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const imageUrl = `/assets/heroes/${id}.jpg`;
+  const imageUrl = `/heroes/${id}.jpg`;
 
   const filteredCharacters = characters
     .split(", ")
