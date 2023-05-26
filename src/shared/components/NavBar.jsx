@@ -1,6 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+
   const navItems = [
     {
       name: "Marvel",
@@ -10,10 +12,18 @@ export const Navbar = () => {
       name: "DC Comics",
       path: "/dc-comics",
     },
+    {
+      name: "Search",
+      path: "/search",
+    },
   ];
 
   const getNavLinkClassName = ({ isActive }) =>
     `nav-link ${isActive ? "active" : ""}`;
+
+  const onLogout = () => {
+    navigate("/login", { replace: true });
+  };
 
   return (
     <nav
@@ -50,7 +60,10 @@ export const Navbar = () => {
 
           <div className="navbar-text d-flex">
             <span className="align-self-center px-lg-2">jpin730</span>
-            <a className="nav-link text-decoration-underline btn px-0 ms-auto ms-lg-2">
+            <a
+              className="nav-link text-decoration-underline btn px-0 ms-auto ms-lg-2"
+              onClick={onLogout}
+            >
               Logout
             </a>
           </div>
