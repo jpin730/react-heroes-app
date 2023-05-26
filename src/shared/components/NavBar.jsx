@@ -40,7 +40,7 @@ export const Navbar = () => {
         <div className="navbar-collapse collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             {navItems.map((navItem) => (
-              <li className="nav-item">
+              <li className="nav-item" key={navItem.path}>
                 <NavLink className={getNavLinkClassName} to={navItem.path}>
                   {navItem.name}
                 </NavLink>

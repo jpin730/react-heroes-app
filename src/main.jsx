@@ -6,7 +6,7 @@ import { HeroesApp } from "./HeroesApp";
 import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.PROD ? "/react-heroes-app" : "/"}>
     <React.StrictMode>
       <HeroesApp />
     </React.StrictMode>
