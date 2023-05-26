@@ -33,6 +33,7 @@ export const AppRouter = () => {
             />
           ))}
           <Route path="/" element={<Navigate to={"/marvel"} />} />
+          <Route path="/*" element={<Navigate to={"/marvel"} />} />
         </Routes>
       </div>
     </>
