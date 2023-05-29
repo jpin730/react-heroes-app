@@ -1,24 +1,34 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { LoginPage } from "../auth";
 import { HeroesRoutes } from "../heroes";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 export const AppRouter = () => {
   const routes = [
     {
       path: "login",
-      component: <LoginPage />,
+      element: (
+        <PublicRoute>
+          <LoginPage />
+        </PublicRoute>
+      ),
     },
     {
       path: "/*",
-      component: <HeroesRoutes />,
+      element: (
+        <PrivateRoute>
+          <HeroesRoutes />
+        </PrivateRoute>
+      ),
     },
   ];
 
   return (
     <Routes>
-      {routes.map((route) => (
-        <Route path={route.path} element={route.component} key={route.path} />
+      {routes.map(({ path, element }) => (
+        <Route path={path} element={element} key={path} />
       ))}
     </Routes>
   );

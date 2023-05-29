@@ -13,23 +13,23 @@ export const HeroesRoutes = () => {
   const routes = [
     {
       path: "marvel",
-      component: <MarvelPage />,
+      element: <MarvelPage />,
     },
     {
       path: "dc-comics",
-      component: <DcComicsPage />,
+      element: <DcComicsPage />,
     },
     {
       path: "search",
-      component: <SearchPage />,
+      element: <SearchPage />,
     },
     {
       path: "hero/:id",
-      component: <HeroPage />,
+      element: <HeroPage />,
     },
     {
       path: "/",
-      component: <HomePage />,
+      element: <HomePage />,
     },
   ];
 
@@ -39,12 +39,8 @@ export const HeroesRoutes = () => {
 
       <div className="container py-3">
         <Routes>
-          {routes.map((route) => (
-            <Route
-              path={route.path}
-              element={route.component}
-              key={route.path}
-            />
+          {routes.map(({ path, element }) => (
+            <Route path={path} element={element} key={path} />
           ))}
 
           <Route path="/*" element={<Navigate to={"/"} />} />
