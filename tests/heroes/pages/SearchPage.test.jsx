@@ -1,7 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { SearchPage } from "../../../src/heroes";
 import { MemoryRouter } from "react-router-dom";
+
+const mockedUseNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
 
 describe("SearchPage", () => {
   test("should render with default values", () => {
@@ -16,7 +23,7 @@ describe("SearchPage", () => {
   });
 
   test("should render results", () => {
-    const { container } = render(
+    render(
       <MemoryRouter initialEntries={["/search?query=batman"]}>
         <SearchPage />
       </MemoryRouter>
@@ -29,7 +36,7 @@ describe("SearchPage", () => {
   });
 
   test("should render alert on no results", () => {
-    const { container } = render(
+    render(
       <MemoryRouter initialEntries={["/search?query=invalid-hero-name"]}>
         <SearchPage />
       </MemoryRouter>
@@ -37,5 +44,24 @@ describe("SearchPage", () => {
 
     expect(screen.getByText("No hero with name")).toBeTruthy();
     expect(screen.getByText('"invalid-hero-name"')).toBeTruthy();
+  });
+
+  test("should call navigate with query on submit search", () => {
+    render(
+      <MemoryRouter initialEntries={["/search"]}>
+        <SearchPage />
+      </MemoryRouter>
+    );
+
+    const searchInput = screen.getByRole("textbox");
+    const value = "superman";
+    fireEvent.change(searchInput, {
+      target: { name: "searchText", value },
+    });
+    expect(searchInput.value).toBe(value);
+    const searchBtn = screen.getByRole("button");
+    fireEvent.click(searchBtn);
+    expect(mockedUseNavigate).toHaveBeenCalledWith("?query=superman");
+    expect(searchInput.value).toBe("");
   });
 });
